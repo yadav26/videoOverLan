@@ -31,7 +31,15 @@ namespace camerEndClient
             {
                 if (se.ErrorCode == 10061)
                 {
-                    _rtb.Invoke(new Action(() => _rtb.AppendText("\n Server not running....retry attempt= " + counter)));
+                 try
+                    {
+                        _rtb.Invoke(new Action(() => _rtb.AppendText("\n Server not running....retry attempt= " + counter)));
+                    }
+                    catch (System.InvalidOperationException e)
+                    {
+
+                    }
+                    
                 }
             }
             return _client;
@@ -76,14 +84,14 @@ namespace camerEndClient
                 }
             }
 
-            _btStart.Invoke(new Action(() => _btStart.Enabled=true ));
 
-            _rtb.Invoke(new Action(() => _rtb.AppendText("\n Client connected Successfully...." )));
+            _btStart.Invoke(new Action(() => _btStart.Enabled=true ));
 
         }
 
         public void launchClientConnectionThread()
         {
+
             thSocketListening.Start();
         }
 

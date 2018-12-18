@@ -8,7 +8,10 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -21,10 +24,14 @@ namespace camerEndClient
         private socketClientThread _sthClientConn = null;
         const int PORT_NO = 5000;
         const string SERVER_IP = "127.0.0.1";
+        IFormatter _formatter = null;
 
         public Form1()
         {
             InitializeComponent();
+
+            _formatter = new BinaryFormatter();
+
 
             CvInvoke.UseOpenCL = false;
             try
@@ -42,9 +49,11 @@ namespace camerEndClient
         {
             if (_capture != null && _capture.Ptr != IntPtr.Zero)
             {
-                _capture.Retrieve(_frame, 0);
-                
-                _sthClientConn .sendFrameToServer(_frame.ToString());
+                _capture.Retrieve(_frame, 0);               
+
+                SerializerDeserialzer.SerializeFrame( _frame, _formatter ); // Serialize an instance of the class.
+                _frame = SerializerDeserialzer.DeSerializeFrame( _formatter ); // Deserialize the instance.
+
                 captureImageBox.Image = _frame;
 
             }
@@ -60,6 +69,8 @@ namespace camerEndClient
         }
         private void ReleaseData()
         {
+            _capture.Stop();
+            Thread.Sleep(2000);
             if (_capture != null)
                 _capture.Dispose();
         }

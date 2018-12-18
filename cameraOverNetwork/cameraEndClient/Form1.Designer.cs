@@ -46,7 +46,6 @@
             // 
             // btStart
             // 
-            this.btStart.Enabled = false;
             this.btStart.Location = new System.Drawing.Point(35, 12);
             this.btStart.Name = "btStart";
             this.btStart.Size = new System.Drawing.Size(140, 37);
