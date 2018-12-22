@@ -3,3 +3,12 @@
 ################################################################################
 
 /cameraOverNetwork/camerDisplayHost/bin
+/cameraOverNetwork/camerDisplayHost/obj
+/cameraOverNetwork/cameraEndClient/obj
+/cameraOverNetwork/cameraEndClient/test1_webcam.csproj.user
+/cameraOverNetwork/camerDisplayHost/cameraDisplayHost.csproj.user
+/cameraOverNetwork/camSerializerDeserialzerLib/bin/Debug
+/cameraOverNetwork/camSerializerDeserialzerLib/obj/Debug
+/cameraOverNetwork/camSerializerDeserialzerLib/obj/Release
+/cameraOverNetwork/camSerializerDeserialzerLib/bin/Release
+/cameraOverNetwork/cameraEndClient/bin/Release/camSerializerDeserialzerLib.dll
